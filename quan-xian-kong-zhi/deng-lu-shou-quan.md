@@ -23,6 +23,7 @@ http接口: `POST /authorize/login`, 登录接口支持2种`content-type`,`appli
 ⚠️注意: 此接口只实现了简单的登录逻辑,不过会通过发布各种事件来实现自定义的逻辑处理.
 
 1. `AuthorizationDecodeEvent` 在接收到登录请求之后触发,如果在登录前对用户名密码进行里加密,可以通过监听此事件实现对用户名密码的解密操作
+注:该事件有bug，调用setPassword之后是复制给username；
 2. `AuthorizationBeforeEvent` 在`AuthorizationDecodeEvent`事件完成后触发,可通过监听此事件并获取请求参数,实现验证码功能
 3. `AuthorizationSuccessEvent` 在授权成功后触发.注意: 权限控制模块也是通过监听此事件来完成授权
 4. `AuthorizationFailedEvent` 授权失败时触发.当发生过程中异常时触发此事件
